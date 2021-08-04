@@ -42,7 +42,7 @@ DNS1=192.168.179.2
 
 # 二、重启
 
-```
+```shell
 service network restart
 ```
 
