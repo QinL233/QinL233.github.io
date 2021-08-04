@@ -1,11 +1,11 @@
 ---
-title: 'springcloud alibaba nacos'
+title: 'springcloud alibaba sentinel'
 layout: post
 tags:
-  - nacos
+  - sentinel
 category: springcloud
 ---
-springcloud alibaba nacos。
+springcloud alibaba sentinel。
 
 <!--more-->
 
