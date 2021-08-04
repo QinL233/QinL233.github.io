@@ -2,8 +2,8 @@
 title: 'Sublime Text 3211 Install'
 layout: post
 tags:
-  - network
-category: Network
+  - Install
+category: Sublime Text
 ---
 <!--more-->
 

@@ -4,10 +4,10 @@
 # ---------------------------------------------------------------
 
 # Site
-title: Simpleyyt
-subtitle: Yitao's Blog
-description: Too simple, sometimes naive.
-author: Simpleyyt
+title: QinL233
+subtitle: QinL233's Blog
+description: The Docs
+author: QinL233
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
 language: zh-Hans
 date_format: '%Y-%m-%d'
@@ -76,7 +76,7 @@ plugins:
 # ---------------------------------------------------------------
 
 # Put your favicon.ico into `assets/` directory.
-favicon: /assets/images/author.jpeg
+favicon: /assets/images/author.jpg
 
 # Set default keywords (Use a comma to separate)
 keywords: "Jekyll, NexT, simpleyyt, yitao"
@@ -214,8 +214,7 @@ font:
 # Key is the link label showing to end users.
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 social:
-  GitHub: https://github.com/simpleyyt
-  知乎: http://www.zhihu.com/people/yaoyit
+  GitHub: https://github.com/QinL233
 
 
 # Social Links Icons
@@ -234,7 +233,7 @@ social_icons:
 
 # Sidebar Avatar
 # in directory: /assets/images/avatar.gif
-avatar: /assets/images/author.jpeg
+avatar: /assets/images/author.jpg
 
 
 # Table Of Contents in the Sidebar
