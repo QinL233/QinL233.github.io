@@ -5,6 +5,8 @@ tags:
   - Install
 category: Sublime Text
 ---
+Sublime Text 3 version 3211版本安装以及破解过程
+
 <!--more-->
 
 ## 一、在hosts中添加（成功后可还原）
