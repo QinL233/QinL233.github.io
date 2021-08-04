@@ -1,11 +1,11 @@
 ---
-title: 'Sublime Text 3211 Install'
+title: 'Sublime Text 3 Install'
 layout: post
 tags:
   - Install
 category: Sublime Text
 ---
-Sublime Text 3 version 3211版本安装以及破解过程
+Sublime Text 3 version 3211版本安装以及破解过程。
 
 <!--more-->
 
