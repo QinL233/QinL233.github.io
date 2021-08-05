@@ -1,11 +1,11 @@
 ---
-title: 'Centos Network 配置'
+title: 'Linux Network 配置'
 layout: post
 tags:
   - network
-category: Centos
+category: Linux 
 ---
-Centos Network 配置。
+Linux Network 配置。
 
 <!--more-->
 

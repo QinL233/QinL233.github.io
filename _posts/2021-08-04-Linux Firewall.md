@@ -1,11 +1,11 @@
 ---
-title: 'Centos Firewall 常用命令'
+title: 'Linux Firewall 常用命令'
 layout: post
 tags:
   - firewall
-category: Centos
+category: Linux 
 ---
-Centos Firewall 常用命令。
+Linux Firewall 常用命令。
 
 <!--more-->
 

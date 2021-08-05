@@ -1,11 +1,11 @@
 ---
-title: 'Centos ntpdate 实现时间同步'
+title: 'Linux ntpdate 实现时间同步'
 layout: post
 tags:
   - ntpdate 
-category: Centos
+category: Linux 
 ---
-Centos ntpdate 实现时间同步。
+Linux ntpdate 实现时间同步。
 
 <!--more-->
 
