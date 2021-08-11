@@ -11,6 +11,8 @@ Linux Network 配置。
 
 # 一、修改ip地址
 
+## 更改配置文件
+
 文件路径：/etc/sysconfig/network-scripts/ifcfg-eth0
 
 ```
@@ -40,13 +42,13 @@ GATEWAY=192.168.179.2
 DNS1=192.168.179.2 
 ```
 
-# 二、重启
+## 重启network服务
 
 ```shell
 service network restart
 ```
 
-# 三、修改dns地址
+# 二、修改dns地址
 
 编辑：/etc/resolv.conf
 
@@ -60,4 +62,17 @@ nameserver 114.114.114.114
 223.5.5.5 阿里
 223.6.6.6 阿里
 180.76.76.76 百度
+
+# 三、查看端口
+
+```shell
+netstat -tunlp | grep 端口号
+```
+
+| -t (tcp) 仅显示tcp相关选项                  |
+| ------------------------------------------- |
+| -u (udp)仅显示udp相关选项                   |
+| -n 拒绝显示别名，能显示数字的全部转化为数字 |
+| -l 仅列出在Listen(监听)的服务状态           |
+| -p 显示建立相关链接的程序名                 |
 
