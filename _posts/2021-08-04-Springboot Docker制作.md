@@ -25,7 +25,7 @@ Springboot Docker制作。
 
 ![20210804163921](https://raw.githubusercontent.com/QinL233/QinL233.github.io/master/images/20210804163921.png)
 
-# Dockerfile
+### Dockerfile
 
 ```dockerfile
 FROM centos:centos7.5.1804
@@ -44,12 +44,30 @@ WORKDIR /home/app/
 CMD ["sh","/home/app/start.sh"]
 ```
 
-# start.sh
+### start.sh
 
 ```shell
 #!/bin/bash
 JAVA_OPTS="-Xms512m -Xmx512m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:MaxNewSize=512m"
 
 java -jar ${JAVA_OPTS} /home/app/app.jar --spring.profiles.active=prod
+```
+
+# 构建镜像
+
+```shell
+docker build -t imageName:version -f Dockerfile .
+```
+
+# 创建容器
+
+```shell
+docker create -it --name appName --net=host -v /mydir:/home/app imageName:version
+```
+
+# 启动容器
+
+```shell
+docker start appName
 ```
 
