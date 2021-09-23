@@ -41,6 +41,8 @@ VOLUME ["/home/app/"]
 
 WORKDIR /home/app/
 
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
+
 CMD ["sh","/home/app/start.sh"]
 ```
 
@@ -62,7 +64,7 @@ docker build -t imageName:version -f Dockerfile .
 # 创建容器
 
 ```shell
-docker create -it --name appName --net=host -v /mydir:/home/app imageName:version
+docker create -it --name appName --net=host -v /mydir:/home/app  imageName:version
 ```
 
 # 启动容器
