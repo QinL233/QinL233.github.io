@@ -37,7 +37,7 @@ find /home/visual/app/csv -type d -empty -delete
 
 「 | xargs -i  rm -rf {} 」固定写法
 
-
+「 -type 」根据指定类型查找(-,d,l,s,f,b)
 
 # 定时任务
 
