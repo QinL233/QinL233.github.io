@@ -21,7 +21,7 @@ Springboot Docker制作。
 
 3.Dockerfile 构建镜像
 
-4.jdk
+4.jdk文件夹
 
 ![20210804163921](https://raw.githubusercontent.com/QinL233/QinL233.github.io/master/images/20210804163921.png)
 
@@ -58,18 +58,18 @@ java -jar ${JAVA_OPTS} /home/app/app.jar --spring.profiles.active=prod
 # 构建镜像
 
 ```shell
-docker build -t imageName:version -f Dockerfile .
+docker build -t [imageName:version] -f Dockerfile .
 ```
 
 # 创建容器
 
 ```shell
-docker create -it --name appName --net=host -v /mydir:/home/app  imageName:version
+docker create -it --name [appName] --net=host -v [/mydir]:/home/app  [imageName:version]
 ```
 
 # 启动容器
 
 ```shell
-docker start appName
+docker start [appName]
 ```
 
