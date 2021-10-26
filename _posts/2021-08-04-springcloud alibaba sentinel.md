@@ -14,7 +14,7 @@ springcloud alibaba sentinel。
 ```shell
 docker pull bladex/sentinel-dashboard
 
-docker run --name sentinel -d  -p 8858:8858  bladex/sentinel-dashboard
+docker run --name sentinel -d  -p 8858:8858 --privileged=true --restart=always bladex/sentinel-dashboard
 ```
 
 访问http://localhost:8858/即可

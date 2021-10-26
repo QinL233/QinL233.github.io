@@ -25,7 +25,7 @@ server.servlet.contextPath=/nacos
 server.port=8848
 spring.datasource.platform=mysql
 db.num=1
-db.url.0=jdbc:mysql://172.17.180.145:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+db.url.0=jdbc:mysql://192.168.101.136:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
 db.user=root
 db.password=root
 nacos.cmdb.dumpTaskInterval=3600
@@ -54,3 +54,6 @@ docker pull nacos/nacos-server
 docker  run --name nacos -d -p 8848:8848 --privileged=true --restart=always -e JVM_XMS=256m -e JVM_XMX=256m -e MODE=standalone -e PREFER_HOST_MODE=hostname -v /home/nacos/logs:/home/nacos/logs -v /home/nacos/init.d/custom.properties:/home/nacos/init.d/custom.properties nacos/nacos-server
 ```
 
+--privileged=true	使得容器内的root拥有真正外部root的权限
+
+--restart=always	是的容器在docker启动时自动启动
