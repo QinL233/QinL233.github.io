@@ -2,10 +2,10 @@
 title: 'Docker Install'
 layout: post
 tags:
-  - Install
-category: Docker
+  - docker
+category: docker
 ---
-Docker 安装过程。
+docker安装过程。
 
 <!--more-->
 

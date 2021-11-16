@@ -2,8 +2,8 @@
 title: 'Linux ntpdate 实现时间同步'
 layout: post
 tags:
-  - ntpdate 
-category: Linux 
+  - linux
+category: linux 
 ---
 Linux ntpdate 实现时间同步。
 

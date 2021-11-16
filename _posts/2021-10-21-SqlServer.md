@@ -2,10 +2,10 @@
 title: 'Sql server'
 layout: post
 tags:
-  - Sql server
-category: Sql server
+  - sqlserver
+category: sqlserver
 ---
-Sql server.
+关系型数据库sqlserver
 
 <!--more-->
 

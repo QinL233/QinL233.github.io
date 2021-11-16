@@ -2,10 +2,10 @@
 title: 'springcloud alibaba sentinel'
 layout: post
 tags:
-  - sentinel
-category: springcloud
+  - java
+category: java
 ---
-springcloud alibaba sentinel。
+springcloud alibaba sentinel微服务服务治理框架。
 
 <!--more-->
 

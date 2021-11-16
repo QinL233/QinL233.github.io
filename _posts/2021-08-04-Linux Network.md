@@ -2,8 +2,8 @@
 title: 'Linux Network 配置'
 layout: post
 tags:
-  - network
-category: Linux 
+  - linux
+category: linux
 ---
 Linux Network 配置。
 

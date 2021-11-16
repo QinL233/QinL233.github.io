@@ -2,8 +2,8 @@
 title: 'OLAP数据库 Clickhouse'
 layout: post
 tags:
-  - ntpdate 
-category: Centos
+  - clickhouse
+category: clickhouse
 ---
 OLAP数据库 Clickhouse 安装和使用。
 

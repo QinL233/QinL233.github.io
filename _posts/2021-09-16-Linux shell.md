@@ -2,10 +2,10 @@
 title: 'Linux shell'
 layout: post
 tags:
-  - shell
-category: shell 
+  - linux
+category: linux
 ---
-Linux shell.
+Linux shell脚本常用记录.
 
 <!--more-->
 

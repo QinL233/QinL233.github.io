@@ -2,8 +2,8 @@
 title: 'Linux Firewall 常用命令'
 layout: post
 tags:
-  - firewall
-category: Linux 
+  - linux
+category: linux
 ---
 Linux Firewall 常用命令。
 

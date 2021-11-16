@@ -2,8 +2,8 @@
 title: 'Sublime Text 3 Install'
 layout: post
 tags:
-  - Install
-category: Sublime Text
+  - software
+category: software
 ---
 Sublime Text 3 version 3211版本安装以及破解过程。
 
