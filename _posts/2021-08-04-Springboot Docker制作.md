@@ -50,9 +50,12 @@ CMD ["sh","/home/app/start.sh"]
 
 ```shell
 #!/bin/bash
-JAVA_OPTS="-Xms512m -Xmx512m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:MaxNewSize=512m"
+JAVA_OPTS="-Xmx3550m -Xms3550m -Xmn1256m -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -XX:SurvivorRatio=6 -XX:ParallelGCThreads=2 -XX:+UseConcMarkSweepGC  -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation  -Xloggc:./log/gc-%t.log -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
 
-java -jar ${JAVA_OPTS} /home/app/app.jar --spring.profiles.active=prod
+LOG_FILE=$(date -d today +"console_%Y-%m-%d_%H_%M_%S.log")
+
+java -jar ${JAVA_OPTS} /home/app/app.jar --spring.profiles.active=prod > ./log/${LOG_FILE}
+
 ```
 
 # 构建镜像
