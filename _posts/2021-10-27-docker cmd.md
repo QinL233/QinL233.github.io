@@ -87,7 +87,7 @@ docker kill [OPTIONS] CONTAINER [CONTAINER...]
 
 删除一个或多个容器。
 
-```
+```shell
 docker rm [OPTIONS] CONTAINER [CONTAINER...]
 ```
 
@@ -101,7 +101,7 @@ docker rm [OPTIONS] CONTAINER [CONTAINER...]
 
 暂停/恢复容器中所有的进程。
 
-```
+```shell
 docker pause CONTAINER [CONTAINER...]
 docker unpause CONTAINER [CONTAINER...]
 ```
@@ -112,13 +112,23 @@ docker unpause CONTAINER [CONTAINER...]
 
 在运行的容器中执行命令
 
-```
+```shell
 docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
 ```
 
 - **-d :**分离模式: 在后台运行
 - **-i :**即使没有附加也保持STDIN 打开
 - **-t :**分配一个伪终端
+
+
+
+## Docker update
+
+更新容器命令
+
+```shell
+docker update --restart=always [CONTAINER]
+```
 
 
 

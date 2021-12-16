@@ -12,8 +12,8 @@ docker安装过程。
 # 一、编译环境
 
 ```shell
-yum -y install gcc
-yum -y install gcc-c++
+yum -y install gcc gcc-c++
+
 ```
 
 

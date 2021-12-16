@@ -66,6 +66,8 @@ nameserver 114.114.114.114
 # 三、查看端口
 
 ```shell
+yum -y install net-tools
+
 netstat -tunlp | grep 端口号
 ```
 
