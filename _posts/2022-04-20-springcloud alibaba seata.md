@@ -92,7 +92,7 @@ CREATE TABLE `undo_log` (
 
 # 二、nacos配置命名空间
 
-![infoflow_2022-4-21_14-29-49](../images/infoflow_2022-4-21_14-29-49.png)
+![infoflow_2022-4-21_14-29-49](https://raw.githubusercontent.com/QinL233/QinL233.github.io/master/images/infoflow_2022-4-21_14-29-49.png)
 
 命名空间：SEATA_GROUP
 命名空间ID（自动生成，需配置到seata中）：
