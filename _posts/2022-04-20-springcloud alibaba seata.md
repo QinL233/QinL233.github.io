@@ -9,7 +9,7 @@ springcloud alibaba seata- 微服务分布式事务框架。官方文档：https
 
 <!--more-->
 # 一、创建数据库
-## 建库并执行sql脚本
+## seata库
 ```
 -- -------------------------------- The script used when storeMode is 'db' --------------------------------
 -- the table to store GlobalSession data
@@ -68,6 +68,12 @@ CREATE TABLE IF NOT EXISTS `lock_table`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
+
+```
+
+## 客户端所有库必须构建undo_log表
+
+```
 CREATE TABLE `undo_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `branch_id` bigint(20) NOT NULL,
@@ -81,7 +87,6 @@ CREATE TABLE `undo_log` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `ux_undo_log` (`xid`,`branch_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
 
 ```
 
@@ -111,7 +116,7 @@ docker rm seata
 
 ## 配置文件
 
-file.conf 配置mysql，redis分布式全局环境
+### file.conf 配置mysql，redis分布式全局环境
 
 ```
 ## transaction log store, only used in seata-server
@@ -143,7 +148,7 @@ store {
     dbType = "mysql"
     driverClassName = "com.mysql.jdbc.Driver"
     ## 因为设置为db，所以需要选择数据库，这里设置数据库及密码，seata是需要创建的，默认的表是通过脚本运行得到的
-    url = "jdbc:mysql://172.17.180.145:3306/seata"
+    url = "jdbc:mysql://172.17.180.145:3306/seata?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai"
     user = "root"
     password = "root"
     minConn = 5
@@ -169,7 +174,7 @@ store {
 
 ```
 
-registry.conf 配置注册中心
+### registry.conf 配置注册中心
 ```
 
 registry {
