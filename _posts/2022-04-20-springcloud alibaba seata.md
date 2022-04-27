@@ -212,7 +212,7 @@ config {
 ```shell
 
 docker run -itd --name seata --restart=always --net=host \
-        -e SEATA_IP=172.17.180.147 \
+        -e SEATA_IP=172.17.180.145 \
         -e SEATA_PORT=8091 \
         -e STORE_MODE=db \
         -e SERVER_NODE=1 \
@@ -238,5 +238,10 @@ SEATA_PORT是seata服务端口
 docker cp seata:/seata-server/libs/jdbc/mysql-connector-java-8.0.19.jar ./
 
 #替换原/seata-server/libs下的jdbc.jar
-docker cp mysql-connector-java-8.0.19.jar seata:/seata-server/libs/jdbc
+docker cp mysql-connector-java-8.0.19.jar seata:/seata-server/libs
+
+#重启进入容器并删除旧的驱动包
+docker restart seata
+docker exec -it seata sh
+rm -f libs/mysql-connector-java-5
 ```
