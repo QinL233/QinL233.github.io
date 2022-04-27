@@ -16,5 +16,7 @@ docker pull keking/kkfileview
 
 docker run -itd --name kkfileview -p 8012:8012 keking/kkfileview
 
+#http://172.17.180.145:8012/index 访问
+
 ```
 

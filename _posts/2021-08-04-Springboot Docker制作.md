@@ -65,6 +65,11 @@ docker build -t [imageName:version] -f Dockerfile .
 ```
 
 # 创建容器
+注：宿主机的文件夹下，结构必须是：
+app
+- log
+- start.sh
+- app.jar
 
 ```shell
 docker create -it --name [appName] --net=host -v [/mydir]:/home/app  [imageName:version]

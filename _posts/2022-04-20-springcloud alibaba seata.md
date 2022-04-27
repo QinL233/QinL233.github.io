@@ -101,6 +101,8 @@ CREATE TABLE `undo_log` (
 
 ## 先启动容器，将配置文件目录copy到宿主机并修改关键文件
 ```
+docker pull seataio/seata-server:1.4.2
+
 ## 运行容器
 docker run --name seata -p 8091:8091 -d  seataio/seata-server:1.4.2
 ## 将容器中的配置拷贝到/usr/local/seata-1.3.0
@@ -115,6 +117,7 @@ docker rm seata
 
 
 ## 配置文件
+创建配置文件并映射到容器中，启动容器时指定配置文件
 
 ### file.conf 配置mysql，redis分布式全局环境
 
@@ -208,8 +211,8 @@ config {
 
 ```shell
 
-docker run --name seata --net=host \
-        -e SEATA_IP=172.17.180.145 \
+docker run -itd --name seata --restart=always --net=host \
+        -e SEATA_IP=172.17.180.147 \
         -e SEATA_PORT=8091 \
         -e STORE_MODE=db \
         -e SERVER_NODE=1 \
@@ -228,4 +231,12 @@ SEATA_PORT是seata服务端口
 
 # 四、坑
 ## mysql版本驱动包需要保持一致
-容器默认使用的驱动包在 /seata-config/libs 目录下，默认为5.0，使用mysql8.0连接需要删除旧的驱动使用8.0+的驱动包
+容器默认使用的驱动包在 /seata-server/libs 目录下，默认为5.0，使用mysql8.0连接需要删除旧的驱动使用8.0+的驱动包
+
+```
+# 将容器中的jdbc复制出来
+docker cp seata:/seata-server/libs/jdbc/mysql-connector-java-8.0.19.jar ./
+
+#替换原/seata-server/libs下的jdbc.jar
+docker cp mysql-connector-java-8.0.19.jar seata:/seata-server/libs/jdbc
+```

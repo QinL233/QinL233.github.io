@@ -78,3 +78,39 @@ netstat -tunlp | grep 端口号
 | -l 仅列出在Listen(监听)的服务状态           |
 | -p 显示建立相关链接的程序名                 |
 
+# 案例
+## ip变更导致docker容器无法访问
+原因：服务器IP更改之后，linux数据包转发配置net.ipv4.ip_forward会变为0，即关闭状态
+永久生效的配置方式，在系统重启、或对系统的网络服务进行重启后还会一直保持生效状态。这种方式可用于生产环境的部署搭建。
+
+### 修改 /etc/sysctl.conf 配置文件
+
+```shell
+vi  /etc/sysctl.conf
+```
+
+如文件中已有net.ipv4.ip_forward参数，则将参数改为1；如不存在，则在文件末尾添加
+```
+net.ipv4.ip_forward=1
+```
+### 使新的系统配置生效
+
+```
+sysctl -p
+```
+### 修改/etc/sysconfig/network配置文件
+
+```
+vi /etc/sysconfig/network
+```
+在文件最后添加一行：
+```
+FORWARD_IPV4=YES
+```
+
+### 使新的网络配置生效，需重启网络服务
+```shell
+service netwrok restart
+```
+
+
