@@ -266,3 +266,37 @@ class EsApiApplicationTests {
 https://blog.csdn.net/qq_44850489/article/details/119182010
 
 https://blog.csdn.net/qq_37158147/article/details/124431295
+
+## 四、ik分词器
+
+### 1、下载对应板块的包
+https://github.com/medcl/elasticsearch-analysis-ik
+
+### 2、安装
+```
+#在plugin下创建ik文件夹
+mkdir /home/es/plugin/ik
+
+#将解压包解压到ik下
+tar -zxvf xxxx.tar.gz
+
+#重启es服务
+docker restart elasticsearch
+
+```
+
+### 3、检验
+```
+GET /_analyze
+{
+  "text": "中华人民共和国国歌",
+  "analyzer": "ik_smart"
+}
+```
+· ik_max_word 会将文本做最细粒度的拆分
+
+比如会将「中华人民共和国国歌」拆分为：中华人民共和国、中华人民、中华、华人、人民共和国、人民、人、民、共和国、共和、和、国国、国歌，会穷尽各种可能的组合；
+
+· ik_smart 最粗粒度的拆分
+
+比如会将「中华人民共和国国歌」拆分为：中华人民共和国、国歌。
