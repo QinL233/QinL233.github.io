@@ -300,3 +300,15 @@ docker  run --name nacos -d -p 8848:8848 --privileged=true --restart=always -e J
 --privileged=true	使得容器内的root拥有真正外部root的权限
 
 --restart=always	是的容器在docker启动时自动启动
+
+# 二、java集成
+
+## maven依赖
+```
+
+```
+
+## yml配置
+```
+
+```
