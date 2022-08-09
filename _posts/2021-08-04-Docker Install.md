@@ -79,3 +79,63 @@ systemctl start docker
 systemctl enable docker
 ```
 
+# 八、配置新的网卡避免路由冲突
+关闭docker
+vim /etc/docker/daemon.json
+
+```
+{
+  "bip": "192.168.0.1/16",
+  "registry-mirrors": [
+    "https://registry.aliyuncs.com"
+  ]
+}
+```
+
+
+
+重启验证
+```
+systemctl daemon-reload
+
+systemctl restart docker
+
+ifconfig
+
+route -n
+```
+
+
+# 九、配置新的存储未知避免空间不足
+
+```
+#创建新路径
+mkdir -p /home/docker/lib/
+
+#迁移数据
+rsync  -avz  /var/lib/docker/ /home/docker/lib/
+
+```
+
+创建配置文件
+vim /etc/docker/daemon.json
+
+```
+{
+  "bip": "192.168.0.1/16",
+  "data-root": "/home/docker/lib",
+  "registry-mirrors": [
+    "https://registry.aliyuncs.com"
+  ]
+}
+```
+
+
+重启并验证
+```
+systemctl  daemon-reload
+
+systemctl  restart  docker
+
+docker info
+```

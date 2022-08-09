@@ -31,8 +31,8 @@ docker run -d -p 9876:9876 \
 --name rmqnamesrv \
 --restart=always \
 --privileged=true \
--v /home/rocketmq/data/namesrv/logs:/root/logs \
--v /home/rocketmq/data/namesrv/store:/root/store \
+-v /home/rocketmq/data/namesrv/logs:/home/rocketmq/logs \
+-v /home/rocketmq/data/namesrv/store:/home/rocketmq/store \
 -e "MAX_POSSIBLE_HEAP=100000000" \
 rocketmqinc/rocketmq:4.4.0 \
 sh mqnamesrv
@@ -90,8 +90,22 @@ docker run -d \
 --restart=always \
 --privileged=true \
 --link rmqnamesrv:namesrv \
--v /home/rocketmq/data/broker/logs:/root/logs \
+-v /home/rocketmq/data/broker:/root/logs \
 -v /home/rocketmq/data/broker/store:/root/store \
+-v /home/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf \
+-e "NAMESRV_ADDR=namesrv:9876" \
+-e "MAX_POSSIBLE_HEAP=200000000" rocketmqinc/rocketmq:4.4.0 \
+sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf
+
+
+docker run -d \
+-p 10911:10911 -p 10909:10909 \
+--name rmqbroker \
+--restart=always \
+--privileged=true \
+--link rmqnamesrv:namesrv \
+--mount source=/home/rocketmq/data/broker/logs,target=/home/rocketmq/logs \
+--mount source=/home/store,target=/home/rocketmq/store \
 -v /home/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf \
 -e "NAMESRV_ADDR=namesrv:9876" \
 -e "MAX_POSSIBLE_HEAP=200000000" rocketmqinc/rocketmq:4.4.0 \
