@@ -286,6 +286,8 @@ docker run -d \
 -e JVM_XMX=256m \
 -e JVM_XMN=256m \
 -p 8848:8848 \
+-p 9848:9848 \
+-p 9849:9849 \
 --network host \
 --name nacos \
 --restart=always \
