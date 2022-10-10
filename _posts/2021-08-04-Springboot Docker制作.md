@@ -81,3 +81,51 @@ docker create -it --name [appName] --net=host -v [/mydir]:/home/app  [imageName:
 docker start [appName]
 ```
 
+# jar瘦身方案
+
+## maven打包外部依赖
+pom.xml
+```
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <executable>true</executable>
+                <layout>ZIP</layout>
+                <includes>
+                    <include>
+                        <groupId>${groupId}</groupId>
+                        <artifactId>${artifactId}</artifactId>
+                    </include>
+                </includes>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+
+
+```
+
+## 启动时指定依赖目录
+```
+java -jar -Dloader.path="./lib/" xxx.jar
+```
