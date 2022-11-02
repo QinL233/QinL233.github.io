@@ -41,6 +41,8 @@ VOLUME ["/home/app/"]
 
 WORKDIR /home/app/
 
+RUN export LANG=zh_CN.UTF-8
+
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
 
 CMD ["sh","/home/app/start.sh"]

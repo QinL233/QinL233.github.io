@@ -109,6 +109,10 @@ route -n
 # 九、配置新的存储未知避免空间不足
 
 ```
+#停止服务
+systemctl stop docker
+service docker stop
+
 #创建新路径
 mkdir -p /home/docker/lib/
 
