@@ -56,3 +56,36 @@ dpkg -i 证书.deb
 #安装证书时依赖报错
 sudo apt-get -f install
 ```
+
+问题：stable-diffusion-webui依赖以及版本
+```
+#python > 3.10.9
+#pytorch > 13.1.0
+#直接在目录下安装所有依赖库：
+pip3 install -r requirements.txt  
+pip3 install -r requirements_versions.txt
+
+#GFPGAN （腾讯开源的人脸识别模块）安装失败时
+#官方安装地址：https://github.com/TencentARC/GFPGAN
+pip install basicsr  
+  
+pip install facexlib  
+  
+pip install -r requirements.txt  
+python setup.py develop  
+  
+pip install realesrgan
+
+#验证安装
+➜  ~ python3  
+Python 3.10.9 (main, Dec 15 2022, 17:11:09) [Clang 14.0.0 (clang-1400.0.29.202)] on darwin  
+Type "help", "copyright", "credits" or "license" for more information.  
+>>> import gfpgan  
+>>>
+
+
+```
+
+## model地址
+
+将模型下载至```/stable-diffusion-webui/models/Stable-diffusion```并重启
