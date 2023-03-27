@@ -43,11 +43,13 @@ pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
 
 #7、进入stable-diffusion-webui并启动
 cd /app/stable-diffusion-webui
+#cpu执行
 python3 launch.py --skip-torch-cuda-test --upcast-sampling --use-cpu interrogate
 #bash webui.sh --skip-torch-cuda-test --precision full --no-half --use-cpu Stable-diffusion GFPGAN ESRGAN VAE --all --shar
 ```
 
-问题：debian apt update时NOT_KEY需去手动下载证书：https://debian.pkgs.org/11/debian-main-amd64/ca-certificates_20210119_all.deb.html
+## 问题：debian apt update时NOT_KEY
+需去手动下载证书：https://debian.pkgs.org/11/debian-main-amd64/ca-certificates_20210119_all.deb.html
 ```
 
 #安装证书
@@ -57,7 +59,7 @@ dpkg -i 证书.deb
 sudo apt-get -f install
 ```
 
-问题：stable-diffusion-webui依赖以及版本
+## 问题：stable-diffusion-webui依赖以及版本
 ```
 #python > 3.10.9
 #pytorch > 13.1.0
@@ -67,13 +69,12 @@ pip3 install -r requirements_versions.txt
 
 #GFPGAN （腾讯开源的人脸识别模块）安装失败时
 #官方安装地址：https://github.com/TencentARC/GFPGAN
+git clone https://github.com/TencentARC/GFPGAN.git
+cd GFPGAN
 pip install basicsr  
-  
 pip install facexlib  
-  
 pip install -r requirements.txt  
 python setup.py develop  
-  
 pip install realesrgan
 
 #验证安装
@@ -86,6 +87,16 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ```
 
-## model地址
+## 问题：其他依赖timed out after 300030 milliseconds
+编辑 launch.py 在github地址前增加http代理
+```
+https://ghproxy.com/
+
+eg:git clone https://ghproxy.com/https://github.com/stilleshan/ServerStatus
+
+```
+
+# 二、模型使用
+model地址：https://civitai.com/
 
 将模型下载至```/stable-diffusion-webui/models/Stable-diffusion```并重启
