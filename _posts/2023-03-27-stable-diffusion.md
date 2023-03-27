@@ -36,7 +36,7 @@ git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git /app/stabl
 sed -i -E 's/\+?cu([0-9]{3})//g' /app/stable-diffusion-webui/launch.py
 sed -i -E 's/torchvision==([^ ]+)/torchvision/g' /app/stable-diffusion-webui/launch.py
 
-#6、配置并安装conda-python
+#6、配置临时环境变量并安装conda-python
 export PATH=/app/miniconda3/bin/:$PATH
 conda install python="3.10" -y
 pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
