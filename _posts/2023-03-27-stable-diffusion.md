@@ -32,7 +32,7 @@ bash ./Miniconda3-latest-Linux-$(uname -m).sh -b
 #4、安装stable-diffusion-webui
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git /app/stable-diffusion-webui
 
-#5、修改launch.py
+#5、修改launch.py - 替换脚本命令
 sed -i -E 's/\+?cu([0-9]{3})//g' /app/stable-diffusion-webui/launch.py
 sed -i -E 's/torchvision==([^ ]+)/torchvision/g' /app/stable-diffusion-webui/launch.py
 
@@ -43,9 +43,9 @@ pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
 
 #7、进入stable-diffusion-webui并启动
 cd /app/stable-diffusion-webui
-#cpu执行
-python3 launch.py --skip-torch-cuda-test --upcast-sampling --use-cpu interrogate
-#bash webui.sh --skip-torch-cuda-test --precision full --no-half --use-cpu Stable-diffusion GFPGAN ESRGAN VAE --all --shar
+#cpu执行 【--listen支持外部访问】【--share：设置一个外部访问url配合--gradio-auth username:password使用】
+python3 launch.py --skip-torch-cuda-test --precision full --no-half --upcast-sampling --use-cpu interrogate --listen 
+#bash webui.sh --skip-torch-cuda-test --precision full --no-half --use-cpu Stable-diffusion GFPGAN ESRGAN VAE --all --share
 ```
 
 ## 问题：debian apt update时NOT_KEY
