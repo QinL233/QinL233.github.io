@@ -16,5 +16,24 @@ docker pull yandex/clickhouse-server
 
 docker run -d --name clickhouse-server --ulimit nofile=262144:262144 -p 8123:8123 -p 9000:9000 -p 9009:9009 yandex/clickhouse-server
 
+docker run -itd --restart=always --privileged --name clickhouse-server --ulimit nofile=262144:262144 --net=host --volume=/data/clickhouse:/var/lib/clickhouse yandex/clickhouse-server
+
 ```
 
+## 修改密码
+```shell
+docker exec -it clickhouse-server /bin/bash
+
+apt-get update
+apt-get install vim -y
+
+PASSWORD=$(base64 < /dev/urandom | head -c8); echo "你的密码"; echo -n "你的密码" | sha256sum | tr -d '-'
+
+<password> 密码 </password>
+<password_sha256_hex> 密码密文 </password_sha256_hex>
+
+clickhouse-client -h 127.0.0.1 -d default -m -u default --password '你的密码'
+```
+
+## 注意
+driver有专门驱动包，mysql driver端口连接默认为9004，postgresql是9005
