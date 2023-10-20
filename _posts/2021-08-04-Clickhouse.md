@@ -29,6 +29,7 @@ apt-get install vim -y
 
 PASSWORD=$(base64 < /dev/urandom | head -c8); echo "你的密码"; echo -n "你的密码" | sha256sum | tr -d '-'
 
+## /etc/clickhouse-server/users.xml
 <password> 密码 </password>
 <password_sha256_hex> 密码密文 </password_sha256_hex>
 
