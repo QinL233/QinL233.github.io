@@ -3,7 +3,7 @@ title: 'PostgreSql安装'
 layout: post
 tags:
   - PostgreSql
-category: PostgreSql
+category: 数据库
 ---
 PostgreSql安装.
 

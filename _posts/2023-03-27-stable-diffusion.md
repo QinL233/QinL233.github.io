@@ -2,7 +2,7 @@
 title: 'stable-diffusion'
 layout: post
 tags:
-  - ai
+  - 文生图
 category: ai
 ---
 stable-diffusion试用

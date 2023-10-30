@@ -3,7 +3,8 @@ title: 'springcloud alibaba seata'
 layout: post
 tags:
   - java
-category: java
+  - springCloud
+category: 框架
 ---
 springcloud alibaba seata- 微服务分布式事务框架。官方文档：https://seata.io/zh-cn/docs/ops/deploy-by-docker.html
 

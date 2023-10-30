@@ -3,7 +3,7 @@ title: 'Disruptor'
 layout: post
 tags:
   - disruptor
-category: disruptor
+category: 框架
 ---
 disruptor并发工具使用记录。
 

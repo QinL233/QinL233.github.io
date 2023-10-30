@@ -3,7 +3,8 @@ title: 'docker+spug+springboot快速部署'
 layout: post
 tags:
   - java
-category: java
+  - docker
+category: 运维
 ---
 docker+spug+springboot实现快速搭建自动化部署环境快速上线。
 

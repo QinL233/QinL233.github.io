@@ -3,7 +3,7 @@ title: 'Linux ntpdate 实现时间同步'
 layout: post
 tags:
   - linux
-category: linux 
+category: 运维 
 ---
 Linux ntpdate 实现时间同步。
 

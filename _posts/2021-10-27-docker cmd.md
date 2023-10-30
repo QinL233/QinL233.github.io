@@ -3,7 +3,7 @@ title: 'docker'
 layout: post
 tags:
   - docker
-category: docker
+category: 运维
 ---
 docker - 容器服务.
 
@@ -61,7 +61,7 @@ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 - **--rm=false**， 指定容器停止后自动删除容器(不支持以docker run -d启动的容器)
 - **--sig-proxy=true**， 设置由代理接受并处理信号，但是SIGCHLD、SIGSTOP和SIGKILL不能被代理
 
-## Docker start/stop/restart 
+## Docker start/stop/restart
 
 ```
 docker start [OPTIONS] CONTAINER [CONTAINER...]

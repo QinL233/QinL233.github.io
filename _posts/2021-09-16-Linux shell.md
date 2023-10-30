@@ -3,7 +3,7 @@ title: 'Linux shell'
 layout: post
 tags:
   - linux
-category: linux
+category: 运维
 ---
 Linux shell脚本常用记录.
 

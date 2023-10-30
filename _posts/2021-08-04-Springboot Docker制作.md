@@ -3,7 +3,8 @@ title: 'Springboot Docker制作'
 layout: post
 tags:
   - java
-category: java
+  - docker
+category: 运维
 ---
 Springboot Docker制作java镜像文件。
 

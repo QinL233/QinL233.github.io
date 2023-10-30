@@ -3,7 +3,8 @@ title: 'springcloud gateway'
 layout: post
 tags:
   - java
-category: java
+  - springCloud
+category: 框架
 ---
 springcloud alibaba gateway - 微服务服务网关框架。
 

@@ -3,7 +3,7 @@ title: 'apache tika'
 layout: post
 tags:
   - apache
-category: apache
+category: 框架
 ---
 apache tika：各种格式文本解析服务
 

@@ -3,13 +3,13 @@ title: 'OLAP数据库 Clickhouse'
 layout: post
 tags:
   - clickhouse
-category: clickhouse
+category: 数据库
 ---
 OLAP数据库 Clickhouse 安装和使用。
 
 <!--more-->
 
-# 一、docker安装
+# 一、docker部署
 
 ```shell
 docker pull yandex/clickhouse-server

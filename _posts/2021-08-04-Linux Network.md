@@ -3,7 +3,7 @@ title: 'Linux Network 配置'
 layout: post
 tags:
   - linux
-category: linux
+category: 运维
 ---
 Linux Network 配置。
 

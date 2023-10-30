@@ -3,7 +3,7 @@ title: 'Docker Install'
 layout: post
 tags:
   - docker
-category: docker
+category: 运维
 ---
 docker安装过程。
 

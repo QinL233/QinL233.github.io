@@ -3,7 +3,7 @@ title: 'Emscripten安装'
 layout: post
 tags:
   - wasm
-category: wasm
+category: 框架
 ---
 Emscripten安装.
 

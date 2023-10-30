@@ -2,8 +2,8 @@
 title: 'Aspose.PSD for Java'
 layout: post
 tags:
-  - aspose
-category: aspose
+  - psd
+category: 框架
 ---
 
 专业文档处理组件aspose：Aspose.PSD for Java操作PSD工具包

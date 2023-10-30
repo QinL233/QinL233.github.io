@@ -3,7 +3,7 @@ title: 'web文件预览'
 layout: post
 tags:
   - kkfileview
-category: kkfileview
+category: 框架
 ---
 kkfileview在线文件预览.
 

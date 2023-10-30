@@ -3,7 +3,8 @@ title: 'springcloud alibaba nacos'
 layout: post
 tags:
   - java
-category: java
+  - springCloud
+category: 框架
 ---
 springcloud alibaba nacos - 微服务服务发现框架。
 

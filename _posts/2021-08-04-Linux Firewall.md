@@ -3,7 +3,7 @@ title: 'Linux Firewall 常用命令'
 layout: post
 tags:
   - linux
-category: linux
+category: 运维
 ---
 Linux Firewall 常用命令。
 

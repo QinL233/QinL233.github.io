@@ -3,7 +3,7 @@ title: 'Sql server'
 layout: post
 tags:
   - sqlserver
-category: sqlserver
+category: 数据库
 ---
 关系型数据库sqlserver
 

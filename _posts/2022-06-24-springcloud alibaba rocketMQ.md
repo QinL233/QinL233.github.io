@@ -3,7 +3,8 @@ title: 'springcloud alibaba rocketMQ'
 layout: post
 tags:
   - java
-category: java
+  - springCloud
+category: 框架
 ---
 springcloud alibaba rocketMQ - 消息队列：
 
