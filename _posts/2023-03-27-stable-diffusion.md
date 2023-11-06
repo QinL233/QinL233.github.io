@@ -197,108 +197,44 @@ apt-get update
 apt-get install git
 
 pip install -r requirements_versions.txt
+
+pip install -r requirements.txt
 ```
 ### 在使用pip安装basicsr库的时候卡住在Preparing metadata (setup.py)，解决方案：
 ```shell
 pip install --upgrade pip setuptools wheel
 pip install torch==2.0.0+cu117 torchvision==0.15.1+cu117 torchaudio==2.0.1 torchtext==0.15.1 torchdata==0.6.0 --index-url https://download.pytorch.org/whl/cu117
 pip install --no-cache-dir --no-deps -r requirements_versions.txt
+
 # 一切顺利......
 ```
 
 ## 3、配置启动
 ```shell
-python3 launch.py --skip-torch-cuda-test --precision full --no-half --upcast-sampling --use-cpu interrogate --listen --api 
+python3 launch.py --skip-torch-cuda-test --precision full --no-half --upcast-sampling --use-cpu Stable-diffusion --listen --api --enable-insecure-extension-access
 ```
 
-# 三、linux安装
+## 【问题】
+###  got an unexpected keyword argument 'socket_options'
+![微信截图_20231106121752](https://raw.githubusercontent.com/QinL233/QinL233.github.io/master/images/微信截图_20231106121752.png)
+* 原因：httpx 插件版本错误：webui 的工作版本为 0.24.1，但由于一些外部更改，webui 自动安装的软件包是 0.25.1
+* 解决方案：wiki官方解决https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/13840
 
-## debian 11(Bullseye)环境
-```
-#1、安装必要依赖
-apt update
-apt install -y wget git gcc sudo libgl1 libglib2.0-dev python3-dev
-
-
-#2、创建一个用户和空间（webui执行必须为非root）
-useradd --home /app -M app -K UID_MIN=10000 -K GID_MIN=10000 -s /bin/bash
-mkdir /app
-chown app:app -R /app
-adduser app sudo
-echo 'app ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-#3、安装conda管理python
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-$(uname -m).sh
-bash ./Miniconda3-latest-Linux-$(uname -m).sh -b
-
-#4、安装stable-diffusion-webui
-git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git /app/stable-diffusion-webui
-
-#5、修改launch.py - 替换脚本命令
-sed -i -E 's/\+?cu([0-9]{3})//g' /app/stable-diffusion-webui/launch.py
-sed -i -E 's/torchvision==([^ ]+)/torchvision/g' /app/stable-diffusion-webui/launch.py
-
-#6、配置临时环境变量并安装conda-python
-export PATH=/app/miniconda3/bin/:$PATH
-conda install python="3.10" -y
-pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
-
-#7、进入stable-diffusion-webui并启动
-cd /app/stable-diffusion-webui
-#cpu执行 【--listen支持外部访问】【--share：设置一个外部访问url配合--gradio-auth username:password使用】
-python3 launch.py --skip-torch-cuda-test --precision full --no-half --upcast-sampling --use-cpu interrogate --listen 
-#bash webui.sh --skip-torch-cuda-test --precision full --no-half --use-cpu Stable-diffusion GFPGAN ESRGAN VAE --all --share
+### ImportError: libGL.so.1: cannot open shared object file: No such file or directory
+![微信截图_20231106122109](https://raw.githubusercontent.com/QinL233/QinL233.github.io/master/images/微信截图_20231106122109.png)
+* 原因：缺少图形处理依赖
+* 解决方案：安装依赖
+```shell
+apt-get install ffmpeg libsm6 libxext6 -y
+apt-get install libgl1
 ```
 
-## 问题：debian apt update时NOT_KEY
-需去手动下载证书：https://debian.pkgs.org/11/debian-main-amd64/ca-certificates_20210119_all.deb.html
-```
+### OSError: Can't load tokenizer for 'openai/clip-vit-large-patch14'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure 'openai/clip-vit-large-patch14' is the correct path to a directory containing all relevant files for a CLIPTokenizer tokenizer.
+![微信截图_20231106130320](https://raw.githubusercontent.com/QinL233/QinL233.github.io/master/images/微信截图_20231106130320.png)
+* 原因：缺少模型分词库的依赖文件
+* 解决方案：https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/11507
 
-#安装证书
-dpkg -i 证书.deb
-
-#安装证书时依赖报错
-sudo apt-get -f install
-```
-
-## 问题：stable-diffusion-webui依赖以及版本
-```
-#python > 3.10.9
-#pytorch > 13.1.0
-#直接在目录下安装所有依赖库：
-pip3 install -r requirements.txt  
-pip3 install -r requirements_versions.txt
-
-#GFPGAN （腾讯开源的人脸识别模块）安装失败时
-#官方安装地址：https://github.com/TencentARC/GFPGAN
-git clone https://github.com/TencentARC/GFPGAN.git
-cd GFPGAN
-pip install basicsr  
-pip install facexlib  
-pip install -r requirements.txt  
-python setup.py develop  
-pip install realesrgan
-
-#验证安装
-➜  ~ python3  
-Python 3.10.9 (main, Dec 15 2022, 17:11:09) [Clang 14.0.0 (clang-1400.0.29.202)] on darwin  
-Type "help", "copyright", "credits" or "license" for more information.  
->>> import gfpgan  
->>>
-
-
-```
-
-## 问题：其他依赖timed out after 300030 milliseconds
-编辑 launch.py 在github地址前增加http代理
-```
-https://ghproxy.com/
-
-eg:git clone https://ghproxy.com/https://github.com/stilleshan/ServerStatus
-
-```
-
-# 四、模型使用
+# 三、模型使用
 model地址：https://civitai.com/
 
 将模型下载至```/stable-diffusion-webui/models/Stable-diffusion```并重启
