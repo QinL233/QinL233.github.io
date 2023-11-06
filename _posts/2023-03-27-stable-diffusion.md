@@ -235,6 +235,8 @@ apt-get install libgl1
 * 解决方案：https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/11507
 
 # 三、模型使用
-model地址：https://civitai.com/
+model地址：
+https://civitai.com/
+https://huggingface.co/
 
 将模型下载至```/stable-diffusion-webui/models/Stable-diffusion```并重启
