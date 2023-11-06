@@ -178,7 +178,9 @@ call webui.bat
 构建python镜像，git clone git@github.com:AUTOMATIC1111/stable-diffusion-webui.git官方源代码，安装前置依赖根据自身服务器环境修改配置启动
 
 ## 1、创建python3.10.7镜像
-```
+```shell
+#对外映射7860端口
+#先映射磁盘便于与宿主机传输
 docker run -itd --name stable_diffusion -p 8202:7860 -v /home/sdai/data/:/data python:3.10.7
 ```
 
@@ -186,9 +188,13 @@ docker run -itd --name stable_diffusion -p 8202:7860 -v /home/sdai/data/:/data p
 ```shell
 #升级pip用于安装依赖
 python -m pip install --upgrade pip
-
 #设置阿里云便于国内安装
 pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
+
+# apt更新
+apt-get update
+# apt安装git 自动安装依赖会使用git clone插件
+apt-get install git
 
 pip install -r requirements_versions.txt
 ```
@@ -292,7 +298,7 @@ eg:git clone https://ghproxy.com/https://github.com/stilleshan/ServerStatus
 
 ```
 
-# 三、模型使用
+# 四、模型使用
 model地址：https://civitai.com/
 
 将模型下载至```/stable-diffusion-webui/models/Stable-diffusion```并重启
