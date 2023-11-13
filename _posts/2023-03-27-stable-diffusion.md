@@ -196,8 +196,8 @@ apt-get update
 # apt安装git 自动安装依赖会使用git clone插件
 apt-get install git
 
+#历史原因httpx插件版本应该使用0.24.1，可以提前修改requirements_version.txt中的版本再安装
 pip install -r requirements_versions.txt
-
 pip install -r requirements.txt
 ```
 ### 在使用pip安装basicsr库的时候卡住在Preparing metadata (setup.py)，解决方案：
