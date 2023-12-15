@@ -85,11 +85,11 @@ https://mp.weixin.qq.com/mp/profile_ext
 &f=json
 ```
 1. __biz为公众号id，已知
-2. offset为当前页，count为每页数（固定为10不可更改），其中offset并非为0、10、20..的固定序列，而是根据该页获取的文章后，会在结果中返回，即：offset=0&count=10获取时，返回10条最后发布的信息，信息中总共包含12篇文章，因此在结果中还会返回nextOffset=13，因此下一页为offset=13&count=10才可，并且获取默认按发布消息时间降序
-3. uin为用户id
-4. key、pass_ticket、appmsg_token都是在文章认证的列表接口中返回（必须是携带了完整认证码的接口、即能下拉翻页）
-
+2. uin为用户id
+3. key、pass_ticket、appmsg_token都是在文章认证的列表接口中返回（必须是携带了完整认证码的接口、即能下拉翻页）
 ![微信图片_20231215174047](https://raw.githubusercontent.com/QinL233/QinL233.github.io/master/images/微信图片_20231215174047.png)
+4. offset为当前页，count为每页数（固定为10不可更改），其中offset并非为0、10、20..的固定序列，而是根据该页获取的文章后，会在结果中返回，即：offset=0&count=10获取时，返回10条最后发布的信息，信息中总共包含12篇文章，因此在结果中还会返回nextOffset=13，因此下一页为offset=13&count=10才可，并且获取默认按发布消息时间降序
+![微信截图_20231215180509](https://raw.githubusercontent.com/QinL233/QinL233.github.io/master/images/微信截图_20231215180509.png)
 
-
-## 【总结】获取到公众号唯一标识后，既能拼接出固定的文章列表地址，使用客户端打开地址，只用appium获取客户端中有认证码链接并在有效期内提取出认证信息，即可使用认证正常访问文章内容
+## 【总结】获取到公众号唯一标识后，既能拼接出固定的文章列表地址，使用apium操作客户端打开地址，并用appWinDriver获取到dom中的已认证地址，并在有效期内提取出认证信息，即可调用api正常访问文章列表，最后只需使用文章地址即可访问文章内容
+![微信截图_20231215182050](https://raw.githubusercontent.com/QinL233/QinL233.github.io/master/images/微信截图_20231215182050.png)
