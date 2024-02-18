@@ -12,6 +12,33 @@ elasticsearch.
 
 # 一、docker安装
 
+### 准备前置文件
+用于存放配置、数据、插件
+1. 文件夹
+```shell
+#其中elasticsearch.yml是挂载的配置文件，data是挂载的数据，plugins是es的插件，如ik，而数据挂载需要权限，需要设置data文件的权限为可读可写,需要下边的指令。
+chmod -R 777 要修改的路径
+/home/es/config/
+/home/es/data/
+/home/es/plugins/
+```
+2. /home/es/config/elasticsearch.yml 配置
+```
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+http.host: 0.0.0.0
+indices.breaker.total.limit: 80%
+indices.fielddata.cache.size: 10%
+indices.breaker.fielddata.limit: 60%
+indices.breaker.request.limit: 40%
+indices.breaker.total.use_real_memory: false
+
+```
+3. /home/es/data/ 权限
+```
+chmod -R 777 /home/es/data/
+```
+
 ## 创建容器
 ```shell
 #设置max_map_count不能启动es会启动不起来
@@ -34,8 +61,6 @@ docker run -d --name elasticsearch \
  -v /home/es/plugins:/usr/share/elasticsearch/plugins \
 elasticsearch:7.7.0
 
-#其中elasticsearch.yml是挂载的配置文件，data是挂载的数据，plugins是es的插件，如ik，而数据挂载需要权限，需要设置data文件的权限为可读可写,需要下边的指令。
-chmod -R 777 要修改的路径
 #-e "discovery.type=single-node" 设置为单节点
 #-e ES_JAVA_OPTS="-Xms256m -Xmx256m" \ 测试环境下，设置ES的初始内存和最大内存，否则导致过大启动不了ES
 
