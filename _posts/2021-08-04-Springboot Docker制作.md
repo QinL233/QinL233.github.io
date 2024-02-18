@@ -28,6 +28,7 @@ Springboot Docker制作java镜像文件。
 
 ### Dockerfile
 
+* 离线jdk
 ```dockerfile
 FROM centos:centos7.5.1804
 
@@ -48,16 +49,52 @@ RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' 
 
 CMD ["sh","/home/app/start.sh"]
 ```
+* openjdk
+```
+# 使用 OpenJDK 8 镜像作为基础镜像
+FROM openjdk:8-jre-alpine
+
+# 设置中国时区(需联网)
+RUN apk add --no-cache tzdata && \
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone
+
+# 设置容器内的工作目录
+WORKDIR /app
+
+# 将当前目录下的 app.jar 和 start.sh 复制到容器中的 /app 目录
+COPY app.jar start.sh /app/
+
+# 添加权限给启动脚本
+RUN chmod +x start.sh
+
+# 定义容器启动时执行的命令
+CMD ["sh", "start.sh"]
+
+```
+
 
 ### start.sh
 
 ```shell
 #!/bin/bash
-JAVA_OPTS="-Xmx3550m -Xms3550m -Xmn1256m -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -XX:SurvivorRatio=6 -XX:ParallelGCThreads=2 -XX:+UseConcMarkSweepGC  -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation  -Xloggc:./log/gc-%t.log -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
+JAVA_OPTS="-Xmx3550m -Xms3550m -Xmn1256m -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=256M -XX:SurvivorRatio=6 -XX:ParallelGCThreads=2 -XX:+UseConcMarkSweepGC  -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCCause -XX:+UseGCLogFileRotation  -Xloggc:./log/gc-%t.log -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M -Dsun.jnu.encoding=UTF-8 -Dfile.encoding=UTF-8"
 
-LOG_FILE=$(date -d today +"console_%Y-%m-%d_%H_%M_%S.log")
+DIRECTORY="log"
 
-java -jar ${JAVA_OPTS} /home/app/app.jar --spring.profiles.active=prod > ./log/${LOG_FILE}
+if [ ! -d "$DIRECTORY" ]; then
+    mkdir "$DIRECTORY"
+    echo "Created DIRECTORY: $DIRECTORY in the current location. $PWD"
+else
+    echo "Directory $DIRECTORY already exists in the current location. $PWD"
+fi
+
+CURRENT_DATE=$(date '+%Y-%m-%d')
+
+LOG_FILE="$DIRECTORY/app_$CURRENT_DATE.log"
+
+java -jar ${JAVA_OPTS} app.jar --spring.profiles.active=prod > "$LOG_FILE" 2>&1
+
 
 ```
 
@@ -76,6 +113,8 @@ app
 
 ```shell
 docker create -it --name [appName] --net=host -v [/mydir]:/home/app  [imageName:version]
+
+docker create -it --name [appName] --net=host -v [/mydir]:/app  [imageName:version]
 ```
 
 # 启动容器

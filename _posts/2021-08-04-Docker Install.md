@@ -143,3 +143,17 @@ systemctl  restart  docker
 
 docker info
 ```
+
+# 十、离线使用手动配置docker0网桥
+具体是因为Docker的网络控制器通过iptables防火墙对容器网络进行管理，而防火墙默认是禁止所有非本地流量的。对于Docker而言，在第一次启动时会自动在iptables中添加相关规则，但离线安装的Docker如果是第一次启动，就会出现添加规则失败，从而导致网络控制器无法启动的问题。具体表现就是当用户启动Docker时，Docker将会根据本地的IP地址，自动创建一个名为docker0的网桥，如果该操作失败，Docker则无法启动。
+```
+sudo ip link add name docker0 type bridge
+sudo ip addr add dev docker0 172.17.0.1/16
+sudo ip link set dev docker0 up
+```
+
+# 十一、离线传输镜像
+```
+docker save mysql:5.7 > /home/soft/mysql5.7.tar
+docker load < /home/soft/mysql5.7.tar
+```
